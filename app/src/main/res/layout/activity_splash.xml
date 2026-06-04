@@ -5,11 +5,12 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashActivity">
+    tools:context=".Activity.SplashActivity">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -22,6 +23,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
                 app:srcCompat="@drawable/splash_pic" />
 
             <TextView
@@ -40,10 +42,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/subtitle_splash"
-                android:layout_marginTop="18sp"
-                android:textAlignment="center"
+                android:layout_marginTop="18dp" android:textAlignment="center"
                 android:lineSpacingExtra="10dp"
-                android:textSize="16sp"                />
+                android:textSize="16sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 style="@android:style/Widget.Button"
@@ -51,11 +52,10 @@
                 android:id="@+id/startBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Let\'s Get Started"
+                android:text="Let's Get Started"
                 android:textSize="18sp"
                 android:textColor="@color/white"
-                android:background="@drawable/orange_bg"
-                />
+                android:background="@drawable/orange_bg" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -63,12 +63,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/signin"
                 android:textAlignment="center"
-                android:textSize="18sp"/>
-
-
+                android:textSize="18sp"
+                android:layout_marginBottom="16dp"/>
 
         </LinearLayout>
-
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
