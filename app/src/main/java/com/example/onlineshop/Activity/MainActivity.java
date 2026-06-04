@@ -6,15 +6,22 @@ import android.view.View;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
 
 import com.example.onlineshop.Adapter.CategoryAdapter;
+import com.example.onlineshop.Adapter.SliderAdapter;
+import com.example.onlineshop.Domain.BannerModel;
 import com.example.onlineshop.R;
 import com.example.onlineshop.ViewModel.MainViewModel;
 import com.example.onlineshop.databinding.ActivityMainBinding;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
-private ActivityMainBinding binding;
-private MainViewModel viewModel;
+    private ActivityMainBinding binding;
+    private MainViewModel viewModel;
 
 
     @Override
@@ -26,9 +33,34 @@ private MainViewModel viewModel;
 
         viewModel=new MainViewModel();
 
-initCategory();
-
+        initCategory();
+initSlider();
     }
+
+    private void initSlider() {
+        binding.progressBarSlider.setVisibility(View.VISIBLE);
+        viewModel.loadBanner().observeForever(bannerModels -> {
+            if (bannerModels != null && !bannerModels.isEmpty()) {
+                banners(bannerModels);
+                binding.progressBarSlider.setVisibility(View.GONE);
+            }
+        });
+        viewModel.loadBanner();
+    }
+    private void banners(ArrayList<BannerModel> bannerModels) {
+        binding.viewPagerSlider.setAdapter(new SliderAdapter(bannerModels, binding.viewPagerSlider));
+        binding.viewPagerSlider.setClipToPadding(false);
+        binding.viewPagerSlider.setClipChildren(false);
+        binding.viewPagerSlider.setOffscreenPageLimit(3);
+        binding.viewPagerSlider.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+
+        CompositePageTransformer compositePageTransformer=new CompositePageTransformer();
+        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
+
+        binding.viewPagerSlider.setPageTransformer(compositePageTransformer);
+    }
+
+
 
     private void initCategory() {
         binding.progressBarCategory.setVisibility(View.VISIBLE);
