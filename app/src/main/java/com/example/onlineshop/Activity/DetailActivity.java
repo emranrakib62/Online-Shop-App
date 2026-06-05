@@ -1,5 +1,8 @@
 package com.example.onlineshop.Activity;
 
+import static java.util.ResourceBundle.getBundle;
+
+import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -8,19 +11,49 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.onlineshop.Domain.ItemsModel;
+import com.example.onlineshop.Helper.ManagmentCart;
 import com.example.onlineshop.R;
+import com.example.onlineshop.databinding.ActivityDetailBinding;
 
 public class DetailActivity extends AppCompatActivity {
+
+    private ActivityDetailBinding binding;
+    private ItemsModel object;
+    private int numberOrder=1;
+private ManagmentCart managmentCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_detail);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        binding=ActivityDetailBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+managmentCart=new ManagmentCart(this);
+
+
+getBundles();
+
+
+
     }
+    private void getBundles() {
+        object = (ItemsModel) getIntent().getSerializableExtra("object");
+        binding.titleTxt.setText(object.getTitle());
+        binding.priceTxt.setText("$" + object.getPrice());
+        binding.oldPriceTxt.setText("$" + object.getOldPrice());
+        binding.oldPriceTxt.setPaintFlags(binding.oldPriceTxt.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+        binding.descriptionTxt.setText(object.getDescription());
+
+        binding.addToCartBtn.setOnClickListener(v -> {
+            object.setNumberInCart(numberOrder);
+            managmentCart.insertItem(object);
+        });
+
+        binding.backBtn.setOnClickListener(v -> finish());
+    }
+
+
 }
