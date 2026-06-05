@@ -13,7 +13,9 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
+import com.example.onlineshop.Adapter.ColorAdapter;
 import com.example.onlineshop.Adapter.PicListAdapter;
+import com.example.onlineshop.Adapter.SizeAdapter;
 import com.example.onlineshop.Domain.ItemsModel;
 import com.example.onlineshop.Helper.ManagmentCart;
 import com.example.onlineshop.R;
@@ -40,7 +42,18 @@ managmentCart=new ManagmentCart(this);
 
 getBundles();
 initPicList();
+initSize();
+initColors();
+    }
 
+    private void initColors() {
+        binding.recyclerColor.setAdapter(new ColorAdapter(object.getColor()));
+        binding.recyclerColor.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+    }
+
+    private void initSize() {
+        binding.recyclerSize.setAdapter(new SizeAdapter(object.getSize()));
+        binding.recyclerSize.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
 
     }
 
