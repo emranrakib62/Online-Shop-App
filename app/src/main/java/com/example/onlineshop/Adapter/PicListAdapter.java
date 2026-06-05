@@ -1,12 +1,16 @@
 package com.example.onlineshop.Adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.example.onlineshop.databinding.ViewholderPiclistBinding;
 
 import java.util.List;
 
@@ -24,22 +28,39 @@ public class PicListAdapter extends RecyclerView.Adapter<PicListAdapter.Viewhold
     @NonNull
     @Override
     public PicListAdapter.Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+
+        context = parent.getContext();
+        ViewholderPiclistBinding binding =
+                ViewholderPiclistBinding.inflate(LayoutInflater.from(context), parent, false);
+        return new Viewholder(binding);
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull PicListAdapter.Viewholder holder, int position) {
+        Glide.with(context)
+                .load(holder.binding.pic)
+                .into(holder.binding.pic);
+
+        holder.binding.getRoot().setOnClickListener(v -> Glide.with(context)
+                .load(items.get(position))
+                .into(picMain));
+
+
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return items.size();
     }
 
     public class Viewholder extends RecyclerView.ViewHolder {
-        public Viewholder(@NonNull View itemView) {
-            super(itemView);
+
+        ViewholderPiclistBinding binding;
+        public Viewholder(ViewholderPiclistBinding binding) {
+            super(binding.getRoot());
+            this.binding=binding;
         }
     }
 }

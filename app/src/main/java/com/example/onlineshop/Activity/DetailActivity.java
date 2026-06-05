@@ -10,11 +10,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.bumptech.glide.Glide;
+import com.example.onlineshop.Adapter.PicListAdapter;
 import com.example.onlineshop.Domain.ItemsModel;
 import com.example.onlineshop.Helper.ManagmentCart;
 import com.example.onlineshop.R;
 import com.example.onlineshop.databinding.ActivityDetailBinding;
+
+import java.util.ArrayList;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -34,10 +39,24 @@ managmentCart=new ManagmentCart(this);
 
 
 getBundles();
-
+initPicList();
 
 
     }
+
+    private void initPicList() {
+        ArrayList<String> picList = new ArrayList<>(object.getPicUrl());
+
+        Glide.with(this)
+                .load(picList.get(0))
+                .into(binding.pic);
+
+        binding.picList.setAdapter(new PicListAdapter(picList, binding.pic));
+        binding.picList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+
+    }
+
     private void getBundles() {
         object = (ItemsModel) getIntent().getSerializableExtra("object");
         binding.titleTxt.setText(object.getTitle());
