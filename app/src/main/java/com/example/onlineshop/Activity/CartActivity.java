@@ -51,8 +51,8 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void calculatorCart() {
-        double percentTax = 0.02; // ২% ট্যাক্স
-        double delivey = 10; // ডেলিভারি চার্জ ১০ ডলার
+        double percentTax = 0.02;
+        double delivey = 10;
 
         tax = Math.round((managmentCart.getTotalFee() * percentTax * 100.0)) / 100.0;
 
@@ -60,7 +60,7 @@ public class CartActivity extends AppCompatActivity {
         double itemTotal = Math.round((managmentCart.getTotalFee() * 100.0)) / 100.0;
 
         binding.totalFeeTxt.setText("$" + itemTotal);
-        binding.taxTxt.setText("$" + delivey); // ভিডিওতে এখানে একটি টাইপো (Typo) আছে, নিচে ব্যাখ্যা করা হয়েছে।
+        binding.taxTxt.setText("$" + delivey);
         binding.deliveryTxt.setText("$" + delivey);
         binding.totalTxt.setText("$" + total);
     }

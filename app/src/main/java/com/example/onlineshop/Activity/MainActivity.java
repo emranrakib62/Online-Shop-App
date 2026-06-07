@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         binding.bottomNavigation.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int i) {
-                // এখানে ক্লিক লিসেনারের কোড বা ফ্র্যাগমেন্ট ট্রানজিশন লিখুন
+
             }
         });
         binding.cartBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, CartActivity.class)));
