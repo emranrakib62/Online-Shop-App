@@ -4,11 +4,17 @@ SwiftMart is a modern, scalable, and high-performance Android e-commerce applica
 
 ---
 
-## 📖 Overview
+## 📖 App UI ScreenShots
 
-The primary objective of SwiftMart is to simplify online shopping through a user-friendly mobile platform. Users can browse products, view detailed information, manage shopping carts, and experience real-time data updates without refreshing the application.
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/9d2ae6cc-bfe2-4a52-9d95-23a4d75e359c" width="22%" alt="Screenshot 1" />
+  <img src="https://github.com/user-attachments/assets/6737fa9d-71f0-400f-8370-7a4bd8662015" width="22%" alt="Screenshot 2" />
+  <img src="https://github.com/user-attachments/assets/2a9e33be-5620-4f12-8ed8-64924dbedd30" width="22%" alt="Screenshot 3" />
+  <img src="https://github.com/user-attachments/assets/1684e421-9165-4e4e-84f2-478cc790c7a3" width="22%" alt="Screenshot 4" />
+</p>
 
-The system combines Firebase's real-time database capabilities with Cloudinary's media management services and Glide's image-loading engine to deliver a fast and reliable shopping environment.
+
+
 
 ---
 
